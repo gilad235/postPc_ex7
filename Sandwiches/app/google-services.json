@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "823407707391",
+    "project_id": "sandwiches2021-3af5d",
+    "storage_bucket": "sandwiches2021-3af5d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:823407707391:android:f212ad937c6cdf337bb8ca",
+        "android_client_info": {
+          "package_name": "huji.postpc.y2021.giladtal.sandwiches"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "823407707391-c0n8mimmur8gdbt83vgjmmqt4rplb1in.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA6MieoYkHjdzRssHeoClGo9L8DH2pRD74"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "823407707391-c0n8mimmur8gdbt83vgjmmqt4rplb1in.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

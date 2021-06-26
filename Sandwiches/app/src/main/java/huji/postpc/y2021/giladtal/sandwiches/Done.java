@@ -2,6 +2,7 @@ package huji.postpc.y2021.giladtal.sandwiches;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,24 +21,14 @@ public class Done extends AppCompatActivity {
         if (holder==null){
             holder=App.getInstance().getDb();
         }
-        setContentView(R.layout.progress);
-        holder.storage.collection("orders").document(holder.data.id).addSnapshotListener(new EventListener<DocumentSnapshot>() {
-            @Override
-            public void onEvent(@Nullable @org.jetbrains.annotations.Nullable DocumentSnapshot value, @Nullable @org.jetbrains.annotations.Nullable FirebaseFirestoreException error) {
-                if (error!=null){
-                    //todo error
+        setContentView(R.layout.done);
+        Button done = findViewById(R.id.done);
+        done.setOnClickListener(v -> {
+            Intent orderIntent = new Intent(Done.this,Order.class);
+            holder.delete();
+            finish();
+            startActivity(orderIntent);
                 }
-                else if(value!=null){
-                    holder.delete();
-                    finish();
-                }
-                else {
-                    Intent prog = new Intent(Done.this,MainActivity.class);
-                    holder.edit("done");
-                    startActivity(prog);
-                    finish();
-                }
-            }
-        });
+                );
     }
 }

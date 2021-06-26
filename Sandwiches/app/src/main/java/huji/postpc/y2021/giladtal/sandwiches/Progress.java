@@ -30,13 +30,13 @@ public class Progress extends AppCompatActivity {
                 if (error!=null){
                     //todo error
                 }
-                else if(value!=null){
+                else if(value==null){
                     holder.delete();
                     finish();
                 }
-                else {
+                else if (value.getData().get("status").equals("done")){
                     Intent prog = new Intent(Progress.this,Done.class);
-                    holder.edit("done");
+//                    holder.edit("done");
                     startActivity(prog);
                     finish();
                 }

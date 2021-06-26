@@ -47,11 +47,11 @@ public class Holder implements Serializable {
         }
         data = new Order_data(name,  pickles,  hummus,
          tahini,  comment);
+
+        storage.collection("orders").document(data.id).set(data);
+//        storage.collection("orders").add(data);//todo which one?
         editor.putString(data.id, data.dataToString());
         editor.apply();
-        storage.collection("orders").document(data.id).set(data);
-        storage.collection("orders").add(data);//todo which one?
-
     }
 
     public void delete(){

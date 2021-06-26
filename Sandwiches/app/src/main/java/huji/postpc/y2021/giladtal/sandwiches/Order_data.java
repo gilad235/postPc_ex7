@@ -2,15 +2,15 @@ package huji.postpc.y2021.giladtal.sandwiches;
 import java.util.UUID;
 
 public class Order_data {
-    String id;
-    String name;
-    int pickles;
-    boolean hummus;
-    boolean tahini;
-    String comment;
-    String status;
+    public String id;
+    public String name;
+    public int pickles;
+    public boolean hummus;
+    public boolean tahini;
+    public String comment;
+    public String status;
 
-    Order_data(Order_data other)
+    public Order_data(Order_data other)
     {
         this.id = other.id;
         this.name = other.name;
@@ -20,7 +20,17 @@ public class Order_data {
         this.comment = other.comment;
         this.status = other.status;
     }
-    Order_data(String name,int pickles,boolean hummus,
+    public Order_data(String str){
+        String[] lst = str.split("#");
+        this.id = lst[0];
+        this.name = lst[1];
+        this.pickles = Integer.parseInt(lst[2]);
+        this.hummus = Boolean.parseBoolean(lst[3]);
+        this.tahini = Boolean.parseBoolean(lst[4]);
+        this.comment = lst[5];
+        this.status = lst[6];
+    }
+    public Order_data(String name,int pickles,boolean hummus,
                    boolean tahini,String comment)
     {
         this.id = UUID.randomUUID().toString();
@@ -31,7 +41,7 @@ public class Order_data {
         this.comment = comment;
         this.status = "Order";
     }
-    Order_data()
+    public Order_data()
     {
         this.id = UUID.randomUUID().toString();
         this.name = "";
@@ -43,13 +53,10 @@ public class Order_data {
     }
 
 
-    //todo fix functions
-    String dataToString(){
-        return id+"#"+name+"#"+pickles+"#"+hummus+"#"+tahini+"#"+comment+"#"+status;
+    public String dataToString(){
+        return id+"#"+name+"#"+String.valueOf(pickles)+"#"+String.valueOf(hummus)+"#"+String.valueOf(tahini)+"#"+comment+"#"+status;
     }
-    Order_data(String str){
 
-    }
 
 
 }

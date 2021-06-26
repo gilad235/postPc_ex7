@@ -6,6 +6,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.NumberPicker;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,7 +31,10 @@ public class Waiting extends AppCompatActivity {
         Button tahini = findViewById(R.id.tahini);
         Button order_button = findViewById(R.id.order_buuton);
         Button delete_button = findViewById(R.id.delete);
-        //todo add pickels
+        NumberPicker pickels = findViewById(R.id.pickels);
+        pickels.setMaxValue(10);
+        pickels.setMinValue(0);
+        pickels.setValue(holder.data.pickles);
 
         name.setText(holder.getData().name);
         comment.setText(holder.getData().comment);
@@ -53,6 +57,7 @@ public class Waiting extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
                 // text did change
                 String newText = name.getText().toString();
+                holder.data.name = newText;
                 name.setEnabled(true);
             }
         });
@@ -62,6 +67,7 @@ public class Waiting extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
                 // text did change
                 String newText = comment.getText().toString();
+                holder.data.comment = newText;
                 comment.setEnabled(true);
             }
         });
@@ -69,21 +75,31 @@ public class Waiting extends AppCompatActivity {
             if (hummus.getText().equals("no"))
             {
                 hummus.setText("yes");//todo maybe change the way the button has text
+                holder.data.hummus = true;
+
             }
             else {
                 hummus.setText("no");
+                holder.data.hummus = false;
+
             }
         });
         tahini.setOnClickListener(v -> {
             if (tahini.getText().equals("no"))
             {
                 tahini.setText("yes");
+                holder.data.tahini = true;
+
             }
             else {
                 tahini.setText("no");
+                holder.data.tahini = false;
+
             }
         });
         order_button.setOnClickListener(v -> {
+            holder.data.pickles = pickels.getValue();
+
             holder.edit("waiting");
             startActivity(new Intent(this, Waiting.class));
             finish();
@@ -98,13 +114,13 @@ public class Waiting extends AppCompatActivity {
                 if (error!=null){
                     //todo error
                 }
-                else if(value!=null){
+                else if(value==null){
                     holder.delete();
                     finish();
                 }
-                else {
+                else if (value.getData().get("status").equals("progress")){
                     Intent prog = new Intent(Waiting.this,Progress.class);
-                    holder.edit("progress");
+//                    holder.edit("progress");
                     startActivity(prog);
                     finish();
                 }
